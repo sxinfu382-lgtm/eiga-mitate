@@ -10,10 +10,10 @@
 <div class="actions"><button class="primary" id="promptcopy">① 本選びのプロンプトをコピー</button><a class="button" href="https://chatgpt.com/" target="_blank" rel="noopener">② ChatGPTを開く ↗</a></div>
 <p class="small muted">ChatGPTで選書が終わったら、最後の「書名｜著者」10行をコピーして、次の欄に戻ってください。</p></section>
 <section class="book"><h2>STEP 2｜選ばれた10冊を取り込む</h2>
-<p>ChatGPTの最後の10行をそのまま貼り付けてください。各行は「書名｜著者」です。</p>
+<p>ChatGPTで選んだ10冊を貼り付けるか、「今回の10冊を表示」で確認してください。その後、「図書館の検索・予約へ進む」を押してください。</p>
 <textarea id="importtext" rows="6" style="width:100%;font:inherit;border:1px solid #b8c7d0;border-radius:9px;padding:12px" placeholder="そして、バトンは渡された｜瀬尾まいこ&#10;卵の緒｜瀬尾まいこ"></textarea>
-<div class="actions"><button class="primary" id="importbtn">10冊を取り込む</button><button id="examplebtn">今回の10冊を表示</button></div>
-<p id="importmsg" class="small muted" aria-live="polite">10冊の書名と著者を確認してから取り込みます。取り込み時に既存の検索記録は初期化されます。</p></section>
+<div class="actions"><button class="primary" id="importbtn">図書館の検索・予約へ進む →</button><button id="examplebtn">今回の10冊を表示</button></div>
+<p id="importmsg" class="small muted" aria-live="polite">10冊の書名と著者を確認してから次に進みます。取り込み時に既存の検索記録は初期化されます。</p></section>
 <h2>STEP 3｜図書館を調べ、結果を記録する</h2>
 <p>書名をコピーして図書館の検索画面へ。検索・予約はご本人が行い、その結果を下の欄に記録します。<strong>図書館の利用者番号やパスワードをこのページに入力する必要はありません。</strong></p>
 <div id="searchstage" hidden><section class="summary"><div id="progress" aria-live="polite"></div><div class="track" id="track"></div><div class="small muted">緑：結果記録済み　黄色：書名コピー済み　青：現在の本</div></section>
@@ -31,7 +31,7 @@ function render(){const count=state.filter(done).length;document.getElementById(
 const root=document.getElementById("books");root.replaceChildren();titles.forEach(([name,author],i)=>{const s=state[i],card=document.createElement("section");card.className="book"+(done(s)?" done":"")+(active===i?" active":"");const header=document.createElement("div");header.className="head";header.innerHTML='<span class="number">'+(i+1)+'.</span><div><div class="title"></div><div class="author"></div></div>';header.querySelector(".title").textContent=name;header.querySelector(".author").textContent=author;card.append(header);
 const actions=document.createElement("div");actions.className="actions";const copy=document.createElement("button");copy.textContent=s.copied?"✓ コピー済み":"書名をコピー";copy.className=s.copied?"copied":"";copy.onclick=async()=>{try{await navigator.clipboard.writeText(name)}catch(e){const t=document.createElement("textarea");t.value=name;document.body.append(t);t.select();document.execCommand("copy");t.remove()}s.copied=true;active=i;save();render()};actions.append(copy);const link=document.createElement("a");link.className="button";link.textContent="検索画面を開く ↗";link.href="https://www2.library.city.kumamoto.jp/winj/opac/search-detail.do?lang=ja";link.target="_blank";link.rel="noopener";link.onclick=()=>{active=i;save();setTimeout(render,0)};actions.append(link);card.append(actions);
 const result=document.createElement("div");result.className="result";const label=document.createElement("label");label.textContent="結果はどうなりましたか？";label.htmlFor="result"+i;result.append(label);const select=document.createElement("select");select.id="result"+i;options.forEach(([value,text])=>{const o=document.createElement("option");o.value=value;o.textContent=text;select.append(o)});select.value=s.result;select.onchange=()=>{s.result=select.value;if(s.result&&i===active){const n=state.findIndex((v,j)=>j>i&&!done(v));if(n>=0)active=n}save();render()};result.append(select);card.append(result);root.append(card)});}
-document.getElementById("examplebtn").onclick=()=>{document.getElementById("importtext").value=defaultTitles.map(x=>x.join("｜")).join("\n");document.getElementById("importmsg").textContent="今回の10冊を表示しました。「10冊を取り込む」を押してください。"};
+document.getElementById("examplebtn").onclick=()=>{document.getElementById("importtext").value=defaultTitles.map(x=>x.join("｜")).join("\n");document.getElementById("importmsg").textContent="今回の10冊を表示しました。「図書館の検索・予約へ進む」を押してください。"};
 document.getElementById("importbtn").onclick=()=>{
 const box=document.getElementById("importtext"),msg=document.getElementById("importmsg");
 const normalized=box.value.replace(/\\r\\n|\\n|\\r/g,"\n").replace(/\r\n?/g,"\n").replace(/[０-９]/g,x=>String(x.charCodeAt(0)-65296));
