@@ -3,9 +3,15 @@
 <title>ブックコンシェルジュ Ver.2.0｜岡山県版</title>
 <style>
 :root{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",system-ui,sans-serif;color:#24322e;background:#f6f7f3}*{box-sizing:border-box}body{margin:0}header{background:#173e37;color:#fff;padding:46px 20px;text-align:center}header h1{font-size:clamp(27px,5vw,42px);margin:0 0 12px}header p{margin:0;color:#dcebe5}main{max-width:850px;margin:30px auto;padding:0 16px 50px}.panel{background:#fff;border:1px solid #dce5df;border-radius:16px;padding:24px;margin:16px 0;box-shadow:0 2px 9px #173e3709}h2{font-size:22px;margin:0 0 12px}h3{margin:10px 0}.muted{color:#5a7169;font-size:14px;line-height:1.8}.btn{border:0;border-radius:9px;padding:12px 18px;background:#1b6251;color:#fff;font-size:15px;font-weight:700;cursor:pointer}.btn.secondary{background:#e7f1ec;color:#164b3f}.btn:focus-visible,textarea:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffbb59}input,textarea,select{font:inherit;padding:10px;border:1px solid #bbcfc5;border-radius:8px;max-width:100%}textarea{width:100%;min-height:130px}input{width:100%}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.card{border:1px solid #dce5df;border-radius:10px;padding:14px;margin:10px 0}.started{background:#e4efff}.recorded{background:#e0f3e8}.title{font-weight:700}.small{font-size:13px;color:#62736b}.hidden{display:none}.counts{font-weight:700;margin:12px 0}footer{text-align:center;color:#64746c;padding:20px;font-size:13px}a{color:#165d4b}#toast{min-height:24px;color:#165d4b;font-weight:700}
-</style></head><body>
+.notice{background:#fff7df;border:3px solid #c58519;border-radius:14px;padding:22px;margin:0 0 22px;color:#352b16}.notice h2{font-size:clamp(23px,3.5vw,30px);margin:0 0 14px;color:#8c4b06}.notice p{font-size:clamp(18px,2.3vw,22px);line-height:1.7;margin:12px 0}.notice strong{font-weight:800}</style></head><body>
 <header><h1>📚 ブックコンシェルジュ</h1><p>あなたに響く本を見立て、実際に手に取るまで。Ver.2.0｜岡山県版</p></header>
 <main>
+<section class="notice" role="note" aria-label="ご利用前の重要なお知らせ">
+<h2>⚠ ご利用前にお読みください</h2>
+<p><strong>このページは、AIによる選書から図書館検索までの流れを体験できる、個人制作の非公式ツールです。</strong></p>
+<p><strong>実際に本を予約するには、各図書館の利用者番号・パスワード等が必要です。</strong></p>
+<p>予約手続きは岡山県立図書館・新見市立図書館など各図書館の公式サイトで行ってください。<strong>このページ自体では予約できません。</strong>利用者番号やパスワードを、このページへ入力しないでください。</p>
+</section>
 <section class="panel"><h2>どちらから始めますか？</h2><p class="muted">選書はChatGPTと対話しながら。図書館検索はこのページで記録できます。</p>
 <div class="row"><button class="btn" onclick="show('a')">A．私に合う本を選ぶ</button><button class="btn secondary" onclick="show('b')">B．読みたい本を図書館で探す</button></div></section>
 <section id="a" class="panel hidden"><h2>A．私に合う本を選ぶ</h2><p>下のボタンでプロンプトをコピーし、ChatGPTに貼り付けてください。人物分析（任意）→6問→20冊→既読除外→未読10冊を選びます。</p>
