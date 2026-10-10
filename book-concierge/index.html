@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ブックコンシェルジュ Ver.2.0｜岡山県版</title>
+<title>ブックコンシェルジュ Ver.2.4｜岡山県版</title>
 <style>
 :root{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",system-ui,sans-serif;color:#24322e;background:#f6f7f3}*{box-sizing:border-box}body{margin:0}header{background:#173e37;color:#fff;padding:46px 20px;text-align:center}header h1{font-size:clamp(27px,5vw,42px);margin:0 0 12px}header p{margin:0;color:#dcebe5}main{max-width:850px;margin:30px auto;padding:0 16px 50px}.panel{background:#fff;border:1px solid #dce5df;border-radius:16px;padding:24px;margin:16px 0;box-shadow:0 2px 9px #173e3709}h2{font-size:22px;margin:0 0 12px}h3{margin:10px 0}.muted{color:#5a7169;font-size:14px;line-height:1.8}.btn{border:0;border-radius:9px;padding:12px 18px;background:#1b6251;color:#fff;font-size:15px;font-weight:700;cursor:pointer}.btn.secondary{background:#e7f1ec;color:#164b3f}.btn:focus-visible,textarea:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffbb59}input,textarea,select{font:inherit;padding:10px;border:1px solid #bbcfc5;border-radius:8px;max-width:100%}textarea{width:100%;min-height:130px}input{width:100%}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.card{border:1px solid #dce5df;border-radius:10px;padding:14px;margin:10px 0}.started{background:#e4efff}.recorded{background:#e0f3e8}.title{font-weight:700}.small{font-size:13px;color:#62736b}.hidden{display:none}.counts{font-weight:700;margin:12px 0}footer{text-align:center;color:#64746c;padding:20px;font-size:13px}a{color:#165d4b}#toast{min-height:24px;color:#165d4b;font-weight:700}
-.notice{background:#fff7df;border:3px solid #c58519;border-radius:14px;padding:22px;margin:0 0 22px;color:#352b16}.notice h2{font-size:clamp(23px,3.5vw,30px);margin:0 0 14px;color:#8c4b06}.notice p{font-size:clamp(18px,2.3vw,22px);line-height:1.7;margin:12px 0}.notice strong{font-weight:800}</style></head><body>
-<header><h1>📚 ブックコンシェルジュ</h1><p>あなたに響く本を見立て、実際に手に取るまで。Ver.2.0｜岡山県版</p></header>
+.notice{background:#fff7df;border:3px solid #c58519;border-radius:14px;padding:22px;margin:0 0 22px;color:#352b16}.notice h2{font-size:clamp(23px,3.5vw,30px);margin:0 0 14px;color:#8c4b06}.notice p{font-size:clamp(18px,2.3vw,22px);line-height:1.7;margin:12px 0}.notice strong{font-weight:800} .btn.next{background:#16834a;color:white}.btn.done{background:#dce2df;color:#40524b}.chatbtn{display:inline-block;text-decoration:none;border-radius:9px;padding:12px 18px;font-size:15px;font-weight:700;background:#e7f1ec;color:#164b3f}.chatbtn.next{background:#16834a;color:white}.choice{display:block;padding:12px;border:1px solid #dce5df;border-radius:9px;margin:9px 0;cursor:pointer}.choice input{width:auto;margin-right:8px}.stepnote{font-weight:700;color:#17653d;min-height:1.6em}</style></head><body>
+<header><h1>📚 ブックコンシェルジュ</h1><p>あなたに響く本を見立て、実際に手に取るまで。Ver.2.4｜岡山県版</p></header>
 <main>
 <section class="notice" role="note" aria-label="ご利用前の重要なお知らせ">
 <h2>⚠ ご利用前にお読みください</h2>
@@ -13,22 +13,27 @@
 <p>予約手続きは岡山県立図書館・新見市立図書館など各図書館の公式サイトで行ってください。<strong>このページ自体では予約できません。</strong>利用者番号やパスワードを、このページへ入力しないでください。</p>
 </section>
 <section class="panel"><h2>どちらから始めますか？</h2><p class="muted">選書はChatGPTと対話しながら。図書館検索はこのページで記録できます。</p>
-<div class="row"><button class="btn" onclick="show('a')">A．私に合う本を選ぶ</button><button class="btn secondary" onclick="show('b')">B．読みたい本を図書館で探す</button></div></section>
-<section id="a" class="panel hidden"><h2>A．私に合う本を選ぶ</h2><p>下のボタンでプロンプトをコピーし、ChatGPTに貼り付けてください。人物分析（任意）→6問→20冊→既読除外→未読10冊を選びます。</p>
-<div class="row"><button class="btn" onclick="copy(promptA)">ChatGPT用プロンプトをコピー</button><a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPTを開く ↗</a></div>
-<p class="muted">最後に10冊が決まったら「書名｜著者」の10行をコピーし、下のBモードに貼り付けます。ChatGPT内ではA→Bの対話もできますが、このWebページへ自動送信はされません。</p>
+<div class="row"><button id="startA" class="btn next" onclick="startSelection()">A．私に合う本を選ぶ</button><button class="btn secondary" onclick="show('b')">B．読みたい本を図書館で探す</button></div></section>
+<section id="a" class="panel hidden"><h2>A．私に合う本を選ぶ</h2>
+<p>まず選書方法を選択してください。どちらも20冊推薦 → 既読除外 → 未読10冊へ進みます。</p>
+<label class="choice"><input type="radio" name="mode" value="questions" checked onchange="changeMode()">6つの質問に一問ずつ答える</label>
+<label class="choice"><input type="radio" name="mode" value="free" onchange="changeMode()">自由記述で希望を伝える</label>
+<div id="freeArea" class="hidden"><label for="freeWish">今日読みたい本の希望</label><textarea id="freeWish" placeholder="例：今日は切なく悲しい日本の小説を読みたい。知らない作家にも出会いたい。"></textarea><p class="muted">ここで書いた内容をChatGPT用プロンプトに含めます。</p></div>
+<div class="row"><button id="copyA" class="btn next" onclick="copySelection()">ChatGPT用プロンプトをコピー</button><a id="openChat" class="chatbtn" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" onclick="markChatOpened()">ChatGPTを開く ↗</a></div>
+<p id="stepNote" class="stepnote" role="status" aria-live="polite">次は「ChatGPT用プロンプトをコピー」を押してください。</p>
+<p class="muted">コピー後にChatGPTを開き、入力欄に貼り付けて送信してください。最後に10冊が決まったら「書名｜著者」の10行をコピーし、下のBモードに貼り付けます。このWebページへ自動送信はされません。</p>
 <button class="btn secondary" onclick="show('b')">10冊を図書館で探す →</button></section>
 <section id="b" class="panel hidden"><h2>B．図書館検索ナビ</h2><p class="muted">1行に1冊、「書名｜著者」の形式で入力。書名だけでも使えます。Aで選んだ10冊をそのまま貼り付けられます。</p>
-<textarea id="books" placeholder="高瀬庄左衛門御留書｜砂原浩太朗&#10;つまをめとらば｜青山文平"></textarea>
+<textarea id="books" placeholder="高瀬庄左衛門御留書｜青山文平&#10;つまをめとらば｜青山文平"></textarea>
 <div class="row"><button class="btn" onclick="loadBooks()">検索一覧を作る</button><button class="btn secondary" onclick="example()">入力例を表示</button></div>
 <p id="toast" role="status"></p>
 <div id="results" class="hidden"><div class="counts" id="counts"></div><div id="items"></div>
 <div class="row"><button class="btn" onclick="copyReport()">検索記録をコピー</button><button class="btn secondary" onclick="finish()">検索を終了</button><button class="btn secondary" onclick="resetAll()">状態をリセット</button></div><div id="final"></div></div>
 </section>
 <section class="panel"><h2>この仕組みについて</h2><p>岡山県の<a href="https://www.libnet.pref.okayama.jp/okalibsearch/" target="_blank" rel="noopener">図書館横断検索</a>を利用し、書名付きの検索ページを開きます。<a href="https://lib.city.niimi.okayama.jp/WebOpac/webopac/selectsearch.do" target="_blank" rel="noopener">新見市立図書館OPAC</a>も利用できます。</p><p class="muted">図書館の所蔵・予約は自動確認しません。検索結果はご自身で選択して記録してください。記録はこのブラウザー内に一時保存されます（ブラウザーデータ削除などで失われます）。全国版は今後の構想です。</p></section>
-</main><footer>ブックコンシェルジュ Ver.2.0｜岡山県版・試験公開</footer>
+</main><footer>ブックコンシェルジュ Ver.2.4｜岡山県版・試験公開</footer>
 <script>
-const promptA=`# ブックコンシェルジュ Ver.2.0｜Aモード
+const promptA=`# ブックコンシェルジュ Ver.2.4｜Aモード
 あなたはブックコンシェルジュです。質問は一度に一問だけ。既出情報は聞き直さない。実在する本のみ推薦し、図書館の所蔵を推測しない。
 最初に公開noteやブログのURLを任意で聞き、スキップを許可する。URLがあれば実際に読める公開情報のみを参考に、人物像を断定せず分析し、確認を得る。
 続いて次の6問を、各問A〜H程度の分かりやすい選択肢を示して一問ずつ尋ねる。(1)今日の読書気分 (2)ジャンル (3)時代・舞台 (4)惹かれる題材 (5)文体・長さ (6)読後に求めるもの。
@@ -36,8 +41,25 @@ const promptA=`# ブックコンシェルジュ Ver.2.0｜Aモード
 最後に10行の「書名｜著者」一覧を出し、コピーしやすくする。
 「続けてこの10冊を図書館で探しますか？」とYES/NOで尋ねる。YESなら確定10冊を再入力させず、岡山県横断検索（https://www.libnet.pref.okayama.jp/okalibsearch/?title= にURLエンコードした書名を付ける）へ案内する。利用者の検索記録は、未確認／新見にあり／県内他館にあり／予約済み／所蔵なし／保留から選んでもらう。予約済みを自動で推測しない。NOなら終了。
 最初の第0段階の質問から始めてください。`;
+const freeIntro=`# ブックコンシェルジュ Ver.2.4｜自由記述モード
+あなたはブックコンシェルジュです。質問は一度に一問だけ。既出情報は聞き直さない。実在する本のみ推薦し、図書館の所蔵を推測しない。
+利用者の希望：\n`;
+const freeOutro=`\n最初に公開noteやブログのURLを任意で尋ね、スキップを許可する。公開情報を実際に読める場合のみ人物像の参考にし、断定せず確認を得る。自由記述の希望はすでに受け取っているので、6つの選択式質問を繰り返さない。必要な追加質問のみ一問ずつ行う。
+希望を踏まえ実在する本20冊を番号・書名・著者・短い推薦理由付きで提案する。既読番号を尋ねて除外し、未読候補10冊を確定する。不足時は新たな実在作品を補充し既読確認する。最後に10行の「書名｜著者」一覧を出す。
+「続けてこの10冊を図書館で探しますか？」とYES/NOで尋ねる。YESなら10冊を再入力させず、岡山県横断検索（https://www.libnet.pref.okayama.jp/okalibsearch/?title= にURLエンコードした書名を付ける）を案内する。検索記録は未確認／新見にあり／県内他館にあり／予約済み／所蔵なし／保留から選んでもらい、所蔵・予約を推測しない。NOなら終了する。第0段階から開始する。`;
 const statuses=["未確認","新見にあり","県内他館にあり","予約済み","所蔵なし","保留"];
 let entries=[];
+function startSelection(){document.getElementById('startA').classList.remove('next');document.getElementById('startA').classList.add('done');document.getElementById('startA').textContent='✓ A．私に合う本を選ぶ（選択済み）';show('a')}
+function changeMode(){document.getElementById('freeArea').classList.toggle('hidden',document.querySelector('input[name="mode"]:checked').value!=='free');resetCopyState()}
+function resetCopyState(){document.getElementById('copyA').className='btn next';document.getElementById('copyA').textContent='ChatGPT用プロンプトをコピー';document.getElementById('openChat').className='chatbtn';document.getElementById('stepNote').textContent='次は「ChatGPT用プロンプトをコピー」を押してください。'}
+document.addEventListener('input',e=>{if(e.target.id==='freeWish')resetCopyState()});
+async function copySelection(){const mode=document.querySelector('input[name="mode"]:checked').value;const wish=document.getElementById('freeWish').value.trim();if(mode==='free'&&!wish){document.getElementById('stepNote').textContent='先に読みたい本の希望を入力してください。';document.getElementById('freeWish').focus();return}
+const prompt=mode==='free'?freeIntro+wish+freeOutro:promptA;let ok=false;
+try{await navigator.clipboard.writeText(prompt);ok=true}catch(e){const t=document.createElement('textarea');t.value=prompt;t.style.position='fixed';t.style.opacity='0';document.body.append(t);t.select();try{ok=document.execCommand('copy')}catch(_){}t.remove()}
+if(ok){document.getElementById('copyA').className='btn done';document.getElementById('copyA').textContent='✓ コピーしました';document.getElementById('openChat').className='chatbtn next';document.getElementById('stepNote').textContent='✓ コピー完了。次は緑色の「ChatGPTを開く」を押してください。'}
+else{document.getElementById('stepNote').textContent='自動コピーできませんでした。下の入力欄から手動コピーしてください。';let t=document.getElementById('manualPrompt');if(!t){t=document.createElement('textarea');t.id='manualPrompt';document.getElementById('stepNote').after(t)}t.value=prompt;t.focus();t.select()}
+}
+function markChatOpened(){const b=document.getElementById('openChat');if(b.classList.contains('next')){b.className='chatbtn';b.textContent='✓ ChatGPTを開く ↗';document.getElementById('stepNote').textContent='ChatGPTで貼り付け（Ctrl＋V）して送信してください。'}}
 function show(id){document.getElementById('a').classList.toggle('hidden',id!=='a');document.getElementById('b').classList.toggle('hidden',id!=='b');document.getElementById(id).scrollIntoView({behavior:'smooth'});}
 async function copy(s){try{await navigator.clipboard.writeText(s);document.getElementById('toast').textContent='コピーしました。';}catch(e){window.prompt('この文章をコピーしてください',s)}}
 function example(){document.getElementById('books').value='高瀬庄左衛門御留書｜砂原浩太朗\nつまをめとらば｜青山文平';}
