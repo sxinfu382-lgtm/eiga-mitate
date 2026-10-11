@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>映画見立て師｜評論家の書棚版</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f5f1e8;color:#263b39;font-family:system-ui,sans-serif;line-height:1.8}main{max-width:760px;margin:40px auto;padding:40px;background:#fffdf8;border:1px solid #d8d3c5;border-radius:20px}small{letter-spacing:.15em;color:#657772}h1{font-family:serif;font-size:clamp(28px,5vw,40px);line-height:1.4}h1 span{display:block;font-size:.65em;color:#7f653c;margin-top:12px}.lead{font-size:18px}button,.chat{display:block;width:100%;border:0;border-radius:10px;padding:18px;font-size:18px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none}button{background:#244a43;color:white}.chat{background:#ece5d6;color:#263b39;margin-top:14px}button:focus-visible,a:focus-visible{outline:3px solid #ba873c;outline-offset:4px}#status{min-height:2em;color:#31594d}li{margin-bottom:10px}details{border-top:1px solid #ddd4c4;padding-top:18px;margin-top:26px}textarea{width:100%;height:360px;padding:16px;border:1px solid #b6bfb7;font:14px/1.8 monospace;background:white;color:#253833}footer{font-size:13px;color:#737c75;margin-top:24px}@media(max-width:600px){main{margin:14px;padding:24px}button,.chat{font-size:16px}}
+*{box-sizing:border-box}body{margin:0;background:#f5f1e8;color:#263b39;font-family:system-ui,sans-serif;line-height:1.8}main{max-width:760px;margin:40px auto;padding:40px;background:#fffdf8;border:1px solid #d8d3c5;border-radius:20px}small{letter-spacing:.15em;color:#657772}h1{font-family:serif;font-size:clamp(28px,5vw,40px);line-height:1.4}h1 span{display:block;font-size:.65em;color:#7f653c;margin-top:12px}.lead{font-size:18px}button,.chat{display:block;width:100%;border:0;border-radius:10px;padding:18px;font-size:18px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none}button{background:#244a43;color:white}.chat{background:#ece5d6;color:#263b39;margin-top:14px}button:focus-visible,a:focus-visible{outline:3px solid #ba873c;outline-offset:4px}.work-guide{padding:18px;background:#edf4ef;border-left:4px solid #244a43;border-radius:8px}#status{min-height:2em;color:#31594d}li{margin-bottom:10px}details{border-top:1px solid #ddd4c4;padding-top:18px;margin-top:26px}textarea{width:100%;height:360px;padding:16px;border:1px solid #b6bfb7;font:14px/1.8 monospace;background:white;color:#253833}footer{font-size:13px;color:#737c75;margin-top:24px}@media(max-width:600px){main{margin:14px;padding:24px}button,.chat{font-size:16px}}
 </style>
 <main>
 <small>あなたの今日に響く映画を選びます</small>
@@ -13,9 +13,11 @@
 <p>あなたの人となり × 今日の気分 × 映画評論。<br>映画と出会い、その作品を語った映画評にも出会う。</p>
 <button id="copy" type="button">📋 評論家の書棚版プロンプトをコピー</button>
 <p id="status" role="status" aria-live="polite"></p>
-<a class="chat" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">💬 ChatGPTを開く ↗</a>
-<h2>使い方は2ステップ</h2>
-<ol><li>上の「プロンプトをコピー」を押します。</li><li>「ChatGPTを開く」を押し、入力欄に <strong>Ctrl＋V</strong> で貼り付けて送信します。<br>MacはCommand＋V、スマートフォンは入力欄を長押しして「貼り付け」。</li></ol>
+<a class="chat" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">💬 ChatGPTを開く → Workを選ぶ ↗</a>
+<h2>Workで始める・使い方は3ステップ</h2>
+<p class="work-guide"><strong>この書棚版は、最初から「Work」で始めてください。</strong><br>書棚の記事を最後まで確認するため、複数の手順で調査を進めます。時間がかかるかどうかを、ご自身で判断する必要はありません。</p>
+<ol><li>上の「プロンプトをコピー」を押します。</li><li>「ChatGPTを開く」を押し、新しいチャットで入力欄の上にある <strong>「Chat／Work」の「Work」</strong> を選びます。</li><li><strong>Workを選んでから</strong>、入力欄に <strong>Ctrl＋V</strong> で貼り付けて送信します。<br>MacはCommand＋V、スマートフォンは入力欄を長押しして「貼り付け」。</li></ol>
+<p>このページのボタンを押すだけでは、Workは自動選択されません。ChatGPTの画面で「Work」を選んでください。</p>
 <p>ChatGPTから、次の3つを聞かれます。</p>
 <ul><li>あなたのnoteのURL</li><li>今日の気分（A〜K・自由記述も可）</li><li>映画評論・映画レビューのURL</li></ul>
 <p>まず指定した映画評サイトの「書棚」を確認し、作品タイトルの母集団を確定します。その書棚の中だけから候補を選び、鑑賞済み作品を入れ替えて3本を見立てます。最後に、希望する作品のVOD配信状況も確認します。</p>
@@ -24,7 +26,7 @@
 </main>
 <script id="source" type="text/plain">
 ＝＝＝＝＝＝＝＝＝＝＝＝
-CHATGPT用　プロンプト
+CHATGPT Work用　プロンプト
 ＝＝＝＝＝＝＝＝＝＝＝＝
 
 # あなたの今日に響く映画を、映画評論の「書棚」から選びます
@@ -357,8 +359,8 @@ const prompt=document.getElementById('source').textContent.trim();
 const field=document.getElementById('prompt');field.value=prompt;
 document.getElementById('copy').addEventListener('click',async()=>{
  const status=document.getElementById('status');
- try{if(!navigator.clipboard||!window.isSecureContext)throw Error('manual');await navigator.clipboard.writeText(prompt);status.textContent='コピーしました。ChatGPTを開き、貼り付けて送信してください。';}
- catch(e){document.getElementById('manual').open=true;field.focus();field.select();try{if(!document.execCommand('copy'))throw Error('copy');status.textContent='コピーしました。ChatGPTを開き、貼り付けて送信してください。';}catch(err){status.textContent='下の全文を選択しました。Ctrl＋C（MacはCommand＋C）でコピーしてください。';}}
+ try{if(!navigator.clipboard||!window.isSecureContext)throw Error('manual');await navigator.clipboard.writeText(prompt);status.textContent='コピーしました。次にChatGPTを開き、「Work」を選んでから貼り付けて送信してください。';}
+ catch(e){document.getElementById('manual').open=true;field.focus();field.select();try{if(!document.execCommand('copy'))throw Error('copy');status.textContent='コピーしました。次にChatGPTを開き、「Work」を選んでから貼り付けて送信してください。';}catch(err){status.textContent='下の全文を選択しました。Ctrl＋C（MacはCommand＋C）でコピーしてください。';}}
 });
 </script>
 </html>
