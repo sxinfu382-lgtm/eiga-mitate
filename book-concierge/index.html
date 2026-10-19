@@ -19,15 +19,14 @@
 <div class="row"><button id="copyA" class="btn next" onclick="copySelection()">ChatGPT用プロンプトをコピー</button><a id="openChat" class="chatbtn" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" onclick="markChatOpened()">ChatGPTを開く ↗</a></div>
 <p id="stepNote" class="stepnote" role="status" aria-live="polite">次は「ChatGPT用プロンプトをコピー」を押してください。</p>
 <p class="muted">ChatGPTで貼り付けて送信してください。選ばれた10冊の「書名｜著者」をコピーして、下のBに貼り付けます。このページへ自動送信はされません。</p></div></section>
-<section class="panel"><h2>B．読みたい本を図書館で探す</h2><p class="muted">Aで選んだ10冊でも、すでに決めている本でも、ここから直接図書館検索できます。</p><button id="startB" class="btn secondary" onclick="startLibrary()">B．図書館検索へ →</button></section>
-<section class="notice" role="note" aria-label="ご利用前のお知らせ"><strong>ご利用前のお知らせ</strong><p>このページは個人制作の非公式ツールです。図書館の所蔵・予約を自動確認したり、予約を代行したりはできません。予約は各図書館の公式サイトで行い、利用者番号やパスワードをこのページへ入力しないでください。</p></section>
-<section id="b" class="panel hidden"><h2>B．図書館検索ナビ</h2><p class="muted">1行に1冊、「書名｜著者」の形式で入力。書名だけでも使えます。Aで選んだ10冊をそのまま貼り付けられます。</p>
+<section class="panel"><h2>B．読みたい本を図書館で探す</h2><p class="muted">Aで選んだ10冊でも、すでに決めている本でも、ここから直接図書館検索できます。</p><button id="startB" class="btn secondary" onclick="startLibrary()">B．図書館検索へ →</button><div id="b" class="hidden" style="margin-top:20px"><p class="muted">1行に1冊、「書名｜著者」の形式で入力。書名だけでも使えます。Aで選んだ10冊をそのまま貼り付けられます。</p>
 <textarea id="books" placeholder="高瀬庄左衛門御留書｜青山文平&#10;つまをめとらば｜青山文平"></textarea>
 <div class="row"><button class="btn" onclick="loadBooks()">検索一覧を作る</button><button class="btn secondary" onclick="example()">入力例を表示</button></div>
 <p id="toast" role="status"></p>
 <div id="results" class="hidden"><div class="counts" id="counts"></div><div id="items"></div>
 <div class="row"><button class="btn" onclick="copyReport()">検索記録をコピー</button><button class="btn secondary" onclick="finish()">検索を終了</button><button class="btn secondary" onclick="resetAll()">状態をリセット</button></div><div id="final"></div></div>
-</section>
+</div></section>
+<section class="notice" role="note" aria-label="ご利用前のお知らせ"><strong>ご利用前のお知らせ</strong><p>このページは個人制作の非公式ツールです。図書館の所蔵・予約を自動確認したり、予約を代行したりはできません。予約は各図書館の公式サイトで行い、利用者番号やパスワードをこのページへ入力しないでください。</p></section>
 <section class="panel"><h2>この仕組みについて</h2><p>岡山県の<a href="https://www.libnet.pref.okayama.jp/okalibsearch/" target="_blank" rel="noopener">図書館横断検索</a>を利用し、書名付きの検索ページを開きます。<a href="https://lib.city.niimi.okayama.jp/WebOpac/webopac/selectsearch.do" target="_blank" rel="noopener">新見市立図書館OPAC</a>も利用できます。</p><p class="muted">図書館の所蔵・予約は自動確認しません。検索結果はご自身で選択して記録してください。記録はこのブラウザー内に一時保存されます（ブラウザーデータ削除などで失われます）。全国版は今後の構想です。</p></section>
 </main><footer>ブックコンシェルジュ Ver.2.4｜岡山県版・試験公開</footer>
 <script>
