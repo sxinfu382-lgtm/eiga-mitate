@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>わたしのキャラ工房｜Ver.0.1</title><meta name="description" content="描いた子から、次の物語へ。自分の絵を出発点に楽しむ、ChatGPT用の創作工房。"><style>
+:root{color-scheme:light;font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;color:#29273c;background:#f7f5fc}*{box-sizing:border-box}body{margin:0}main{max-width:780px;margin:auto;padding:36px 20px 60px}.tag{letter-spacing:.12em;color:#65539a;font-size:13px}h1{font-size:clamp(29px,7vw,43px);line-height:1.4;margin:14px 0}h2{font-size:21px}p,li{line-height:1.9}.lead{font-size:19px}.card{background:white;border:1px solid #e5def2;border-radius:20px;padding:24px;margin:24px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tile{padding:16px;background:#f3eefb;border-radius:12px}.tile b{display:block;margin-bottom:7px}.tile span{font-size:14px}button,.button{display:block;width:100%;padding:17px 20px;border:0;border-radius:12px;font:inherit;font-weight:700;text-align:center;cursor:pointer;text-decoration:none}button{background:#6950a5;color:white}button.done{background:#24745b}.button{background:#e8f1f8;color:#244966;margin-top:12px}button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid #de8d32;outline-offset:4px}.note{font-size:14px;color:#625f72}#status{min-height:28px;color:#24745b}textarea{width:100%;height:300px;padding:14px;font:14px/1.8 monospace;border:1px solid #b8adc9;border-radius:10px;margin-top:14px}summary{cursor:pointer;padding:10px 0}footer{font-size:13px;color:#696474}@media(max-width:480px){.grid{grid-template-columns:1fr}.card{padding:19px}}
+</style></head><body><main><div class="tag">YOUR CHARACTER, YOUR STORY · Ver.0.1</div><h1>わたしのキャラ工房</h1><p class="lead">描いた子から、<br>次の物語へ。</p><p>キャラクターのことを話したり、次の一枚を考えたり。<br>あなたの絵と言葉から始まる、小さな創作工房です。</p>
+<section class="card"><h2>今日は、何をしてみたい？</h2><div class="grid"><div class="tile"><b>A．私の絵を見て！</b><span>線や表情、あなたの工夫を一緒に見つける。</span></div><div class="tile"><b>B．この子のことを考えたい</b><span>性格、好きなもの、秘密。どんな子か話してみる。</span></div><div class="tile"><b>C．次に何を描こう？</b><span>表情や服装、この子が活躍する場面を考える。</span></div><div class="tile"><b>D．小さな作品にしたい</b><span>紹介カードや１ページ漫画を、少しずつ形にする。</span></div></div><p class="note">コースはChatGPTの中で選べます。途中で変えても大丈夫。</p></section>
+<section class="card"><h2>３ステップで始めよう</h2><ol><li>下のボタンで、工房のプロンプトをコピー。</li><li>ChatGPTを開き、新しいチャットに貼り付けて送信。</li><li>案内が出たら、絵を添付するか、言葉で話してみよう。</li></ol><button id="copy" type="button">① 工房のプロンプトをコピー</button><p id="status" role="status" aria-live="polite"></p><a class="button" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">② ChatGPTを開く ↗</a><p class="note">このページで会話するのではなく、コピーした内容をChatGPTに貼り付けて使います。ChatGPTへのログインが必要な場合があります。</p>
+<details id="manual"><summary>プロンプトを見る・手動でコピーする</summary><label for="prompt">自動コピーできない場合は、下の文章をすべて選択してコピーしてください。</label><textarea id="prompt" readonly># わたしのキャラ工房｜おためし版 Ver.0.1
+あなたは、漫画・アニメの人物やオリジナルキャラクターを描くことが好きな高校生の、創作の話し相手です。本人の絵と言葉を出発点に「次も描きたい」という気持ちにつなげてください。日本語で親しみやすく話し、子ども扱いはしないでください。
+
+## 最初の案内
+「わたしのキャラ工房へようこそ！
+描いた子を、一人連れてきてね。完成した絵でも、描きかけでも、落書きでも大丈夫。
+紙の絵はスマホで撮った写真を、このチャットに添付してね。デジタルの絵は保存画像やスクリーンショットでも大丈夫。絵が手元になければ、言葉だけでも始められるよ。
+
+今日は何をしてみたい？
+A．私の絵を見て！
+B．この子のこと、一緒に考えたい
+C．次に何を描こう？
+D．小さな作品にしたい
+
+迷ったら、まず絵を見せてね」
+と案内して返事を待ってください。
+
+## 対話の約束
+・質問は一度に一問。説明は短く、本人が話す余地を残す。
+・すでに聞いたことは聞き直さない。コースは途中で変更できる。
+・絵を見たら、確認できる線、色、表情、服装、構図などに触れて、魅力を具体的に伝える。見えない細部を作り上げない。画像を確認できないときは、その旨を伝える。
+・人物の性格や作者の気持ちは断定しない。想像したことは本人に確かめる。
+・根拠のない絶賛、才能や進路の判定、他人との比較はしない。
+・添削や練習課題は本人が希望したときに、一つか二つだけ提案する。「今日は見てほしいだけ」も尊重する。
+・設定や物語を勝手に決定しない。提案は本人が選んだり、別案を出したりできるようにする。
+・自作のキャラクターか、既存作品のキャラクターかを混同しない。
+・画像生成は本人が希望した場合だけ行い、大切にしたい特徴を先に確かめる。使えない機能は約束せず、本人が描くための構図案や手順を提案する。
+・学校名、本名、住所などの個人情報を求めない。作品や会話が祖父や家族に自動で共有されるとは言わない。
+
+## 各コース
+A：絵の具体的な魅力を伝え、本人が気に入っているところを聞く。
+B：すでに考えている設定を聞き、一問ずつ人物像を広げる。設定を埋めることを目的にしない。
+C：今のキャラクターで描きたくなる表情、服装、場面などを二つか三つ提案する。
+D：キャラ紹介カード、一場面のイラスト、１ページ漫画などから作りたいものを選ぶ。無理のない手順で完成を助ける。
+
+## ひと区切り
+本人が決めた設定と次に描きたいものを短い「制作メモ」にまとめる。未決定は未決定と記す。別のチャットへ持っていける形にする。
+本人が終了を伝えたら、感想を聞いてよいか一度だけ尋ねる。希望すれば「楽しかったこと／面倒だったこと／次にほしいこと」を短くまとめ、祖父に渡せる感想メモにする。回答や共有は強制しない。
+それでは最初の案内から始めてください。</textarea><button id="select" type="button">全文を選択</button></details></section>
+<section class="card"><h2>絵は、スマホで撮って送ってね</h2><p>紙の絵は明るい場所で、なるべく真上から撮影。描きかけや落書きでも大丈夫。デジタルの絵は、保存した画像やスクリーンショットをChatGPTに添付してね。</p><p class="note">絵がなくても、言葉だけで始められます。この入口ページには画像を送信する機能はありません。</p></section>
+<section class="card"><h2>遊んでみたら、感想をひとこと</h2><p>「楽しかったこと」「面倒だったこと」「次にほしいこと」。このうち一つだけでも、おじいちゃんに教えてね。次の工房づくりのヒントになります。</p><p class="note">見せたい部分だけで大丈夫。絵や会話がおじいちゃんに自動で届くことはありません。</p></section>
+<footer>おためし版 Ver.0.1 · 2026年11月2日<br>改訂版を試すときは、このページから再度コピーし、新しいチャットで始めてください。以前の会話には自動反映されません。</footer></main>
+<script>
+const box=document.getElementById('prompt'),btn=document.getElementById('copy'),status=document.getElementById('status');
+function selectText(){document.getElementById('manual').open=true;box.focus();box.select();box.setSelectionRange(0,box.value.length);}
+btn.addEventListener('click',async()=>{try{if(!navigator.clipboard)throw new Error('unavailable');await navigator.clipboard.writeText(box.value);btn.classList.add('done');btn.textContent='コピーできました ✓';status.textContent='次は「ChatGPTを開く」へ。新しいチャットに貼り付けて送信してね。';}catch(e){selectText();status.textContent='自動コピーできませんでした。選択した文章を長押し、またはコピー操作でコピーしてください。';}});
+document.getElementById('select').addEventListener('click',selectText);
+</script></body></html>
