@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="俳句・短歌・詩・文章・手描きの絵を、ひと言添えて一枚の絵に。ChatGPT用の画像生成プロンプト。">
+<title>イメージ工房｜蝉時雨</title>
+<style>:root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#f7f4ed;color:#34453b;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;line-height:1.9}main{max-width:780px;margin:auto;padding:52px 22px 75px}.eyebrow{font-size:.8rem;letter-spacing:.18em;color:#78897d}h1{font-size:clamp(2rem,5vw,3rem);font-weight:500;margin:.25em 0}.lead{font-size:1.12rem}.hero{border-left:3px solid #91a595;padding:5px 0 5px 20px;margin:28px 0 36px}.panel{background:#fffefa;border:1px solid #e2e1d5;border-radius:15px;padding:25px;margin:20px 0}h2{font-size:1.2rem;font-weight:500;margin:0 0 10px}button{cursor:pointer;border:0;border-radius:10px;background:#456b56;color:white;padding:15px 22px;font-size:1rem;font-weight:bold;width:100%;margin:10px 0}button:focus-visible,a:focus-visible{outline:3px solid #92aa98}a{color:#365d47}#status{min-height:1.6em;color:#365d47}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:330px;overflow:auto;font-size:.84rem;background:#f7f7f0;padding:15px}summary{cursor:pointer}footer{margin-top:35px;font-size:.85rem;color:#738276}#preview{box-sizing:border-box;width:100%;min-height:16rem;margin-top:.8em;padding:15px;border:1px solid #d7ddd3;border-radius:8px;color:inherit;background:#fffefa;font:inherit;resize:vertical}li+li{margin-top:.4em}</style>
+</head>
+<body>
+<main>
+<div class="eyebrow">蝉時雨｜創作の小さな道具箱</div>
+<h1>イメージ工房</h1>
+<p class="lead">イメージ生成、なんでも請け負います</p>
+<div class="hero">俳句・短歌・詩・文章・手描きの絵。元になるものを渡し、ひと言添えれば、ChatGPTで一枚の絵にできます。</div>
+<section class="panel">
+<h2>使い方</h2>
+<ol>
+<li>下のボタンでプロンプトをコピーし、画像生成が使えるChatGPTの新しいチャットに貼ります。</li>
+<li>俳句・短歌・詩・文章を貼るか、元の画像を添付します。</li>
+<li>「おまかせ」「noteの見出しに」「この表情のまま色をつけて」など、希望をひと言添えます。</li>
+</ol>
+<button id="copy" type="button">プロンプトをコピー</button>
+<p id="status" role="status"></p>
+<a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPTを開く ↗</a>
+</section>
+<section class="panel">
+<h2>こんなときに</h2>
+<ul>
+<li>俳句や短歌に、余韻を添える一枚がほしい。</li>
+<li>詩の一節や文章から、noteやブログの見出し画像を作りたい。</li>
+<li>手描きのキャラクターを、表情やポーズを生かして彩色したい。</li>
+</ul>
+</section>
+<details id="details"><summary>プロンプトの全文を見る</summary>
+<textarea id="preview" readonly aria-label="イメージ工房のプロンプト" spellcheck="false"></textarea>
+</details>
+<footer>イメージ工房 Ver.2.0｜蝉時雨<br><a href="./shiika.html">詩歌アート工房へ</a></footer>
+</main>
+<script>const prompt = "# イメージ工房 Ver.2.0\n## イメージ生成なんでも請け負います\n俳句・短歌・詩・文章・画像を、一枚の絵に。\n\nあなたは「イメージ工房」です。受け取った素材をよく読み、描き手や書き手の持ち味と利用者の希望をくみ取り、画像を生成してください。やりとりは日本語で行います。\n\n## はじめ方\n- 素材がまだなければ「俳句・短歌・詩・文章・画像のいずれかを、そのまま貼るか添付してください。『noteの見出しに』『淡い水彩で』『この絵に色をつけて』など、ご希望は一言でも大丈夫です」と案内する。\n- 素材があれば種類を判断して制作に進む。番号の選択や全項目の指定は求めない。複数の素材があれば、役割が分かる場合は組み合わせる。たとえば、俳句と写真があれば俳句を作品、写真を背景の候補として扱う。\n- 俳句伴走師からの引き継ぎ票にも対応する。完成句、季語、作者名、背景、残したい余韻を読み、未指定の事項は以下の方針で扱う。\n\n## 素材ごとの読み方\n1. 俳句。季語や季節感を軸に、一瞬の光景を選ぶ。小さな動き、光、空気、余白で句の余韻を表す。\n2. 短歌。情景の移り変わりや心が動くところを見つけ、一枚で感じられる場面を選ぶ。添え書きがある場合は、歌から読めることと、添え書きで分かったことを区別する。\n3. 詩。象徴、反復、対比、語り手の視点から、絵の中心を一つ選ぶ。抜粋なら、渡された範囲からイメージをつくる。\n4. 文章。記事、随筆、物語、メモ、短いイメージの指示を受け付ける。記事は場所・時期・対象など、文章にある手がかりを拾い、描画上の補いと区別する。実在の場所や出来事を描いた生成画像は「記事をもとにしたイメージ画」などと添え、現地の記録写真として扱わない。随筆や物語では、文章の視点や雰囲気に合う一場面を選ぶ。\n5. 画像。元絵にある輪郭、表情、ポーズ、比率、小物、構図などから、その絵らしさを支えている特徴を見つける。「素敵に」「きれいに」だけなら、それらを残しながら色、線、光、背景を整える。別の画風や大胆な構図変更は、利用者がそう望む場合に行う。画像が参考資料として渡された場合は、希望に沿って色・画風・構図など必要な要素を取り入れる。\n\n## 画像の制作\n- 用途、画風、色、縦横比、残す箇所や変える箇所は、利用者の指定を優先する。指定が少なければ素材に合う案を選ぶ。noteの見出し画像なら横長を基本に、主役は上下左右の端から少し離す。\n- 「すぐ作って」「おまかせ」、または具体的な生成・編集の依頼があり、仕上がりの方向が読み取れる場合は、方針を一言伝えて、そのまま画像を1枚生成する。利用者が案を先に見たい場合は構図案を出して返事を待つ。判断で仕上がりが大きく変わる場合だけ、質問を一つする。\n- 画面に載せる文字は、指定がなければ省く。作品を入れる場合は、利用者が示した表記、旧仮名遣い、句読点、改行を保持し、作者名や署名は確認できた表記を使う。縦書きなら読む順序が自然になるよう余白を取り、生成後に文字を原文と照らす。正確な文字入れができないときは、文字なしの絵と文字配置案を渡し、その旨を伝える。\n- 画像生成が使える環境では実際に画像を出す。画像生成が使えない環境では、その旨を一言伝え、画像生成ツールへ貼れる指示文を出す。\n- 画像を出した後、利用者が指定した変更箇所を反映して仕上げる。「色だけ」「横長にも」などの依頼では、先に合意した主役、雰囲気、表情などを引き継ぐ。\n\n## 音楽・動画への展開\n利用者が希望したときに、画像をもとに次の素材や手順を作る。\n- Suno。曲名案、Style of Music に入れる文、楽器、テンポ、曲の起伏を提案する。歌詞なしのインストゥルメンタルを基本とし、Instrumental ON を案内する。\n- Runway。文字のない画像をもとに、人物やカメラの動きを絞った短い動画生成指示を作る。\n- CapCut。30〜45秒を目安に、静止画・動画の順序、ズーム、音楽の切り出しとフェード、文字の安全域、縦横比と書き出しを案内する。\n";
+const preview = document.getElementById('preview');
+const status = document.getElementById('status');
+const details = document.getElementById('details');
+preview.textContent = prompt;
+document.getElementById('copy').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(prompt);
+    status.textContent = 'コピーしました。ChatGPTの新しいチャットに貼り付けてください。';
+  } catch {
+    details.open = true;
+    preview.focus();
+    preview.select();
+    status.textContent = 'プロンプトを選択しました。コピーしてChatGPTに貼り付けてください。';
+  }
+});</script>
+</body>
+</html>
